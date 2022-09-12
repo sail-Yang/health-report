@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="jpg">
+    <file>tom.jpg</file>
+  </qresource>
+  <qresource prefix="svg">
+    <file>tilamisu.svg</file>
+  </qresource>
+</RCC>
