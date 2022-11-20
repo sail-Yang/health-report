@@ -6,6 +6,7 @@
 import sys
 
 from selenium.webdriver import Keys
+from selenium.webdriver.edge.options import Options
 
 import mainWindow
 from PyQt5.QtWidgets import QApplication, QDialog, QMessageBox
@@ -13,6 +14,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.chrome.service import Service
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from PyQt5.QtCore import QCoreApplication,Qt
 import time
 import json
@@ -59,8 +61,9 @@ class MainDialog(QDialog):
     def Login(self):
 
         url = 'https://sso.yzu.edu.cn/login?service=https:%2F%2Fehall.yzu.edu.cn%2Finfoplus%2Flogin%3FretUrl%3Dhttps%253A%252F%252Fehall.yzu.edu.cn%252Finfoplus%252Fform%252FXNYQSB%252Fstart'
-        s = Service('msedgedriver.exe')
-        browser = webdriver.Edge(service=s)
+        options = Options()
+        options.page_load_strategy = 'eager'
+        browser = webdriver.Edge(EdgeChromiumDriverManager(path=".//").install(),options=options)
         self.student['usrname'] = self.ui.usrname.text()
         self.student['passwd'] = self.ui.passwd.text()
         self.student['reason'] = self.ui.reasonText.toPlainText()
